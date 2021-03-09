@@ -8,6 +8,7 @@ import 'package:food_delivery_app/screens/voice_search_screen.dart';
 import 'package:food_delivery_app/screens/profile_screen.dart';
 
 void main() {
+  Paint.enableDithering = true;
   runApp(MyApp());
 }
 
@@ -37,6 +38,14 @@ class MyAppContainer extends StatefulWidget {
 class _MyAppContainerState extends State<MyAppContainer> {
   int _selectedIndex = 0;
   PageController _pageController;
+  //TODO: seperate appbars
+  List<String> appBarTitles = [
+    "Home",
+    "Search",
+    "My List",
+    "Map",
+    "Voice Search"
+  ];
 
   @override
   void initState() {
@@ -50,50 +59,62 @@ class _MyAppContainerState extends State<MyAppContainer> {
       onWillPop: () {
         return;
       },
-      child: Scaffold(
-        backgroundColor: Color(0xff191d21),
-        appBar: buildAppBar(),
-        body: PageView(
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          children: [
-            SafeArea(child: HomeScreen()),
-            SafeArea(child: SearchScreen()),
-            SafeArea(child: MyListScreen()),
-            SafeArea(child: MapScreen()),
-            SafeArea(child: VoiceSearchScreen()),
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.bottomRight,
+          end: Alignment.topLeft,
+          stops: [0.0, 1.0],
+          colors: [
+            Color(0xff161a1e),
+            Color(0xff25292d),
           ],
+        )),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: buildAppBar(_selectedIndex),
+          body: PageView(
+            controller: _pageController,
+            physics: new NeverScrollableScrollPhysics(),
+            onPageChanged: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            children: [
+              SafeArea(child: HomeScreen()),
+              SafeArea(child: SearchScreen()),
+              SafeArea(child: MyListScreen()),
+              SafeArea(child: MapScreen()),
+              SafeArea(child: VoiceSearchScreen()),
+            ],
+          ),
+          bottomNavigationBar: bottomNavigationBar(),
         ),
-        bottomNavigationBar: bottomNavigationBar(),
       ),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(int index) {
     return AppBar(
       backgroundColor: Color(0x00000000),
       centerTitle: true,
       title: Text(
-        "My List",
+        appBarTitles[index],
         style: TextStyle(color: Colors.white),
       ),
       elevation: 0,
       actions: [
         Padding(
           padding: const EdgeInsets.all(12.0),
-          child: GestureDetector(
+          child: InkWell(
             onTap: () {
               return Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ProfileScreen()));
             },
-            child: CircleAvatar(
-              radius: 16,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+            child: Hero(
+              tag: "avatar",
+              child: ClipOval(
                 child: Image.asset("assets/images/avatar.png"),
               ),
             ),
@@ -116,12 +137,8 @@ class _MyAppContainerState extends State<MyAppContainer> {
         if (index != _selectedIndex) {
           setState(() {
             _selectedIndex = index;
-            _pageController.animateToPage(
+            _pageController.jumpToPage(
               index,
-              duration: Duration(
-                milliseconds: 200,
-              ),
-              curve: Curves.easeIn,
             );
           });
         }

@@ -7,7 +7,19 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Center(child: Text("ProfileScreen")),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Hero(
+              tag: "avatar",
+              child: ClipOval(
+                child: Image.asset("assets/images/avatar.png"),
+              ),
+            ),
+            Text("ProfileScreen"),
+          ],
+        ),
       ),
     );
   }
