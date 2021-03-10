@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:food_delivery_app/screens/menu_screen.dart';
 import 'package:food_delivery_app/widgets/food_card_square.dart';
 import 'package:food_delivery_app/widgets/restaurant_card_visited.dart';
 import 'package:food_delivery_app/widgets/review_widget.dart';
@@ -16,10 +17,10 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             visitedrestaurantsection(),
-            reviewSection("Reviews"),
-            foodsectionsquare("Order Again"),
-            foodsectionsquare("Popular"),
-            foodsectionsquare("Recommended"),
+            reviewSection('Reviews'),
+            foodsectionsquare('Order Again'),
+            foodsectionsquare('Popular'),
+            foodsectionsquare('Recommended'),
           ],
         ),
       ),
@@ -35,7 +36,10 @@ class HomeScreen extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MenuScreen()));
+            },
             child: AnimationConfiguration.staggeredList(
               position: index,
               delay: Duration(milliseconds: 100),
@@ -63,7 +67,7 @@ class HomeScreen extends StatelessWidget {
             title,
             style: TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               fontSize: 18,
             ),
           ),
@@ -111,7 +115,7 @@ class HomeScreen extends StatelessWidget {
             title,
             style: TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               fontSize: 18,
             ),
           ),

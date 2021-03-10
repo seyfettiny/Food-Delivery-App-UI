@@ -12,12 +12,12 @@ class ProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Hero(
-              tag: "avatar",
+              tag: 'avatar',
               child: ClipOval(
-                child: Image.asset("assets/images/avatar.png"),
+                child: Image.asset('assets/images/avatar.png'),
               ),
             ),
-            Text("ProfileScreen"),
+            Text('ProfileScreen'),
           ],
         ),
       ),

@@ -16,7 +16,7 @@ class ReviewWidget extends StatelessWidget {
         child: index % 4 == 0
             ? buildLiveWidget()
             : ClipOval(
-                child: Image.asset("assets/images/avatar.png"),
+                child: Image.asset('assets/images/avatar.png'),
               ),
       ),
     );
@@ -32,7 +32,7 @@ class ReviewWidget extends StatelessWidget {
             color: Colors.deepOrange,
             padding: EdgeInsets.all(2),
             child: ClipOval(
-              child: Image.asset("assets/images/avatar.png"),
+              child: Image.asset('assets/images/avatar.png'),
             ),
           ),
         ),
@@ -41,7 +41,7 @@ class ReviewWidget extends StatelessWidget {
           child: Container(
             color: Colors.deepOrange,
             child: Text(
-              "LIVE",
+              'LIVE',
               style: TextStyle(color: Colors.white, fontSize: 9),
             ),
           ),

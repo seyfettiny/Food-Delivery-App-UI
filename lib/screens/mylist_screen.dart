@@ -13,10 +13,10 @@ class MyListScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            visitedrestaurantsection("Visited"),
-            restaurantsection("Recent"),
-            restaurantsection("Favorite"),
-            restaurantsection("Want to Visit"),
+            visitedrestaurantsection('Visited'),
+            restaurantsection('Recent'),
+            restaurantsection('Favorite'),
+            restaurantsection('Want to Visit'),
           ],
         ),
       ),
@@ -33,7 +33,7 @@ class MyListScreen extends StatelessWidget {
             title,
             style: TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               fontSize: 18,
             ),
           ),
@@ -79,7 +79,7 @@ class MyListScreen extends StatelessWidget {
             title,
             style: TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               fontSize: 18,
             ),
           ),

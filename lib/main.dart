@@ -22,6 +22,10 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.deepOrange,
         primarySwatch: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: TextTheme(
+          bodyText2: TextStyle(color: Colors.white),
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       home: MyAppContainer(),
     );
@@ -40,11 +44,11 @@ class _MyAppContainerState extends State<MyAppContainer> {
   PageController _pageController;
   //TODO: seperate appbars
   List<String> appBarTitles = [
-    "Home",
-    "Search",
-    "My List",
-    "Map",
-    "Voice Search"
+    'Home',
+    'Search',
+    'My List',
+    'Map',
+    'Voice Search'
   ];
 
   @override
@@ -61,21 +65,22 @@ class _MyAppContainerState extends State<MyAppContainer> {
       },
       child: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.bottomRight,
-          end: Alignment.topLeft,
-          stops: [0.0, 1.0],
-          colors: [
-            Color(0xff161a1e),
-            Color(0xff25292d),
-          ],
-        )),
+          gradient: LinearGradient(
+            begin: Alignment.bottomRight,
+            end: Alignment.topLeft,
+            stops: [0.0, 1.0],
+            colors: [
+              Color(0xff161a1e),
+              Color(0xff25292d),
+            ],
+          ),
+        ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: buildAppBar(_selectedIndex),
           body: PageView(
             controller: _pageController,
-            physics: new NeverScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             onPageChanged: (index) {
               setState(() {
                 _selectedIndex = index;
@@ -97,7 +102,7 @@ class _MyAppContainerState extends State<MyAppContainer> {
 
   AppBar buildAppBar(int index) {
     return AppBar(
-      backgroundColor: Color(0x00000000),
+      backgroundColor: Colors.transparent,
       centerTitle: true,
       title: Text(
         appBarTitles[index],
@@ -113,9 +118,9 @@ class _MyAppContainerState extends State<MyAppContainer> {
                   MaterialPageRoute(builder: (context) => ProfileScreen()));
             },
             child: Hero(
-              tag: "avatar",
+              tag: 'avatar',
               child: ClipOval(
-                child: Image.asset("assets/images/avatar.png"),
+                child: Image.asset('assets/images/avatar.png'),
               ),
             ),
           ),
