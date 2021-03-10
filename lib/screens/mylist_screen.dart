@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:food_delivery_app/widgets/restaurant_card.dart';
 import 'package:food_delivery_app/widgets/restaurant_card_visited.dart';
 
@@ -46,7 +47,17 @@ class MyListScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {},
-                child: RestaurantCard(),
+                child: AnimationConfiguration.staggeredList(
+                  position: index,
+                  delay: Duration(milliseconds: 100),
+                  duration: Duration(milliseconds: 300),
+                  child: SlideAnimation(
+                    horizontalOffset: 100,
+                    child: FadeInAnimation(
+                      child: RestaurantCard(),
+                    ),
+                  ),
+                ),
               );
             },
           ),
@@ -82,7 +93,17 @@ class MyListScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {},
-                child: RestaurantCardVisited(),
+                child: AnimationConfiguration.staggeredList(
+                  position: index,
+                  delay: Duration(milliseconds: 100),
+                  duration: Duration(milliseconds: 300),
+                  child: SlideAnimation(
+                    horizontalOffset: 50,
+                    child: FadeInAnimation(
+                      child: RestaurantCardVisited(),
+                    ),
+                  ),
+                ),
               );
             },
           ),
