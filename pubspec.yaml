@@ -18,8 +18,21 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
-
+    - assets/images/food
+    - assets/images/user
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/Gilroy-Thin.otf
+        - asset: assets/fonts/Gilroy-UltraLight.otf
+        - asset: assets/fonts/Gilroy-Light.otf
+        - asset: assets/fonts/Gilroy-Regular.otf
+        - asset: assets/fonts/Gilroy-Medium.otf
+        - asset: assets/fonts/Gilroy-SemiBold.otf
+        - asset: assets/fonts/Gilroy-Bold.otf
+        - asset: assets/fonts/Gilroy-ExtraBold.otf
+        - asset: assets/fonts/Gilroy-Black.otf
+        - asset: assets/fonts/Gilroy-Heavy.otf
 # An image asset can refer to one or more resolution-specific "variants", see
 # https://flutter.dev/assets-and-images/#resolution-aware.
 # For details regarding adding assets from package dependencies, see

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -100,9 +102,7 @@ class MenuScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            LikeButton(
-                              iconSize: 14,
-                            ),
+                            LikeButton(),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -112,12 +112,12 @@ class MenuScreen extends StatelessWidget {
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  'Lorem ipsum is simply dummy text of thasdasde',
+                                  'Lorem ipsum is simply dummy text of thasdasdsde',
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w300,
-                                      fontSize: 12),
+                                      fontSize: 11),
                                 ),
                               ],
                             )
@@ -140,8 +140,9 @@ class MenuScreen extends StatelessWidget {
                             ],
                           ),
                           child: Image.asset(
-                            'assets/images/soup_PNG99.png',
+                            'assets/images/steak_PNG24.png',
                             width: 130,
+                            height: 130,
                           ),
                         ),
                       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_delivery_app/widgets/like_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key key}) : super(key: key);
@@ -52,7 +51,10 @@ class ProfileScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      icon: FaIcon(FontAwesomeIcons.facebook),
+                      icon: FaIcon(
+                        FontAwesomeIcons.facebook,
+                        color: Colors.blue,
+                      ),
                       onPressed: () {},
                     ),
                     IconButton(
@@ -60,7 +62,10 @@ class ProfileScreen extends StatelessWidget {
                       onPressed: () {},
                     ),
                     IconButton(
-                      icon: FaIcon(FontAwesomeIcons.google),
+                      icon: FaIcon(
+                        FontAwesomeIcons.google,
+                        color: Colors.red,
+                      ),
                       onPressed: () {},
                     ),
                   ],
@@ -84,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
       centerTitle: true,
       actions: [
         IconButton(
-          icon: FaIcon(FontAwesomeIcons.edit),
+          icon: FaIcon(FontAwesomeIcons.cog),
           onPressed: () {},
         ),
       ],

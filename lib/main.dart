@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.deepOrange,
         primarySwatch: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'Gilroy',
         textTheme: TextTheme(
           bodyText2: TextStyle(color: Colors.white),
         ),
@@ -106,7 +107,7 @@ class _MyAppContainerState extends State<MyAppContainer> {
       centerTitle: true,
       title: Text(
         appBarTitles[index],
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
       ),
       elevation: 0,
       actions: [

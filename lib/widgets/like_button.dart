@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LikeButton extends StatefulWidget {
-  double iconSize = 12;
-  LikeButton({
-    Key key,
-    this.iconSize,
-  }) : super(key: key);
-
   @override
   _LikeButtonState createState() => _LikeButtonState();
 }
@@ -29,11 +23,11 @@ class _LikeButtonState extends State<LikeButton>
 
     animation = TweenSequence(<TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
-        tween: Tween<double>(begin: LikeButton().iconSize, end: 20),
+        tween: Tween<double>(begin: 14, end: 20),
         weight: 50,
       ),
       TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 20, end: LikeButton().iconSize),
+        tween: Tween<double>(begin: 20, end: 14),
         weight: 50,
       ),
     ]).animate(animationController);

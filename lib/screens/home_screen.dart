@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
         Container(
           height: 100,
           child: ListView.builder(
-            itemCount: 6,
+            itemCount: 8,
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
@@ -123,7 +123,7 @@ class HomeScreen extends StatelessWidget {
         Container(
           height: 200,
           child: ListView.builder(
-            itemCount: 4,
+            itemCount: 8,
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
