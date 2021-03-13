@@ -121,7 +121,7 @@ class _MyAppContainerState extends State<MyAppContainer> {
             child: Hero(
               tag: 'avatar',
               child: ClipOval(
-                child: Image.asset('assets/images/avatar.png'),
+                child: Image.asset('assets/images/user/avatar.png'),
               ),
             ),
           ),

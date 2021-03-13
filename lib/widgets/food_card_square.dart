@@ -29,8 +29,8 @@ class FoodCardSquare extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  'https://images.unsplash.com/photo-1552566626-52f8b828add9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+                child: Image.asset(
+                  'assets/images/restaurant/Ciqxn7FE4vE.jpg',
                   fit: BoxFit.cover,
                   width: 110,
                   height: 140,

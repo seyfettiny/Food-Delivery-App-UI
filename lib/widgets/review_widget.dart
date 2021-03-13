@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ReviewWidget extends StatelessWidget {
   final int index;
@@ -16,7 +17,7 @@ class ReviewWidget extends StatelessWidget {
         child: index % 4 == 0
             ? buildLiveWidget()
             : ClipOval(
-                child: Image.asset('assets/images/avatar.png'),
+                child: Image.asset('assets/images/user/avatar.png'),
               ),
       ),
     );
@@ -32,17 +33,19 @@ class ReviewWidget extends StatelessWidget {
             color: Colors.deepOrange,
             padding: EdgeInsets.all(2),
             child: ClipOval(
-              child: Image.asset('assets/images/avatar.png'),
+              child: Image.asset('assets/images/user/avatar.png'),
             ),
           ),
         ),
         Positioned(
-          bottom: -4,
+          bottom: -6,
           child: Container(
+            padding: EdgeInsets.fromLTRB(6, 4, 6, 4),
             color: Colors.deepOrange,
-            child: Text(
-              'LIVE',
-              style: TextStyle(color: Colors.white, fontSize: 9),
+            child: Icon(
+              FontAwesomeIcons.play,
+              color: Colors.white,
+              size: 10,
             ),
           ),
         ),

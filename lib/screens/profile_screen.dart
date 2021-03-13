@@ -32,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
                 tag: 'avatar',
                 child: ClipOval(
                   child: Image.asset(
-                    'assets/images/avatar.png',
+                    'assets/images/user/avatar.png',
                     width: 120,
                   ),
                 ),

@@ -18,8 +18,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/food
-    - assets/images/user
+    - assets/images/food/
+    - assets/images/user/
+    - assets/images/restaurant/
+    - assets/images/gifs/
   fonts:
     - family: Gilroy
       fonts:
