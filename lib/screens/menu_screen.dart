@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_delivery_app/models/food_model.dart';
-import 'package:food_delivery_app/widgets/food_container.dart';
+import 'package:food_delivery_app/models/restaurant_model.dart';
 import 'package:food_delivery_app/widgets/custom_button.dart';
+import 'package:food_delivery_app/widgets/food_container.dart';
+import 'package:food_delivery_app/screens/cart_screen.dart';
 
 class MenuScreen extends StatelessWidget {
+  final RestaurantModel restaurant;
+  const MenuScreen({
+    @required this.restaurant,
+  });
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,15 +29,15 @@ class MenuScreen extends StatelessWidget {
           length: 4,
           child: Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: buildAppBar(),
+            appBar: buildAppBar(context),
             body: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TabBarView(
                 children: [
-                  buildTabBeer(),
-                  Text('2'),
-                  Text('3'),
-                  Text('4'),
+                  buildTabFood(restaurant.foodSection),
+                  buildTabFood(restaurant.beerSection),
+                  buildTabFood(restaurant.wineSection),
+                  buildTabFood(restaurant.hotDrinkSection),
                 ],
               ),
             ),
@@ -45,18 +50,21 @@ class MenuScreen extends StatelessWidget {
     );
   }
 
-  Widget buildTabBeer() {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          buildSectionTitle('First Meal'),
-          FoodContainer(foodList: soupList),
-          buildSectionTitle('Hot Meals'),
-          FoodContainer(foodList: steakList),
-          buildSectionTitle('Pizza'),
-          FoodContainer(foodList: pizzaList),
-        ],
+  Widget buildTabFood(Map section) {
+    return Container(
+      child: ListView.builder(
+        itemCount: section.length,
+        itemBuilder: (context, index) {
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildSectionTitle(section.keys.elementAt(index)),
+                FoodContainer(foodList: section.values.elementAt(index)),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -75,19 +83,22 @@ class MenuScreen extends StatelessWidget {
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
+      brightness: Brightness.dark,
       elevation: 0,
       iconTheme: IconThemeData(
         color: Colors.white,
       ),
-      brightness: Brightness.dark,
       centerTitle: true,
       actions: [
         IconButton(
           icon: FaIcon(FontAwesomeIcons.shoppingBag),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => CartScreen()));
+          },
         ),
       ],
       title: Text(

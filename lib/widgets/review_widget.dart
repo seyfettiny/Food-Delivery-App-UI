@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_delivery_app/models/user_model.dart';
 
 class ReviewWidget extends StatelessWidget {
   final int index;
@@ -14,11 +15,21 @@ class ReviewWidget extends StatelessWidget {
       margin: const EdgeInsets.all(10.0),
       child: GestureDetector(
         onTap: () {},
-        child: index % 4 == 0
-            ? buildLiveWidget()
-            : ClipOval(
-                child: Image.asset('assets/images/user/avatar.png'),
-              ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            index % 4 == 0
+                ? buildLiveWidget()
+                : ClipOval(
+                    child: Image.asset(
+                      userList[index].imgUrl,
+                      height: 100,
+                      width: 100,
+                    ),
+                  ),
+            Text(userList[index].name)
+          ],
+        ),
       ),
     );
   }
@@ -33,7 +44,11 @@ class ReviewWidget extends StatelessWidget {
             color: Colors.deepOrange,
             padding: EdgeInsets.all(2),
             child: ClipOval(
-              child: Image.asset('assets/images/user/avatar.png'),
+              child: Image.asset(
+                userList[index].imgUrl,
+                height: 100,
+                width: 100,
+              ),
             ),
           ),
         ),

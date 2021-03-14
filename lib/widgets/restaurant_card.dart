@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/models/restaurant_model.dart';
 
 class RestaurantCard extends StatelessWidget {
-  final String imgUrl;
-  final String title;
-  const RestaurantCard({Key key, this.imgUrl, this.title}) : super(key: key);
+  final RestaurantModel restaurant;
+
+  const RestaurantCard({Key key, this.restaurant}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Container(
+        width: 230,
+        height: 150,
         margin: EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -32,16 +35,17 @@ class RestaurantCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  'assets/images/restaurant/Ciqxn7FE4vE.jpg',
+                  restaurant.imgUrl,
                   fit: BoxFit.fitWidth,
-                  width: 230,
                   height: 150,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Restaurant Name',
+                  restaurant.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),

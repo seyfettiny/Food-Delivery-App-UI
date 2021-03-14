@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:food_delivery_app/models/restaurant_model.dart';
+
 class RestaurantCardVisited extends StatelessWidget {
-  final String imgUrl;
-  final String title;
-  const RestaurantCardVisited({Key key, this.imgUrl, this.title})
-      : super(key: key);
+  final RestaurantModel restaurant;
+
+  const RestaurantCardVisited({
+    @required this.restaurant,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class RestaurantCardVisited extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  'assets/images/restaurant/Ciqxn7FE4vE.jpg',
+                  restaurant.imgUrl,
                   fit: BoxFit.fitWidth,
                   width: 300,
                   height: 155,
@@ -42,19 +45,30 @@ class RestaurantCardVisited extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
-                  'Restaurant Name',
+                  restaurant.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(4.0),
-                //TODO: restaurantmodel.rtype(index)
-                child: Text(
-                  'Fine Dinner  •  Family ',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
+                child: Container(
+                  height: 15,
+                  child: ListView.builder(
+                    itemCount: restaurant.restaurantType.length,
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Text(
+                        restaurant.restaurantType[index] + '  ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

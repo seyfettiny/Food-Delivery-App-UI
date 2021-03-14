@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_delivery_app/models/food_model.dart';
+import 'package:lottie/lottie.dart';
 
 class LikeButton extends StatefulWidget {
   final double size;
@@ -21,33 +21,9 @@ class _LikeButtonState extends State<LikeButton>
     super.initState();
 
     animationController = AnimationController(
-      duration: Duration(milliseconds: 200),
+      duration: Duration(milliseconds: 800),
       vsync: this,
     );
-
-    animation = TweenSequence(<TweenSequenceItem<double>>[
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: widget.size, end: (widget.size + 5)),
-        weight: 50,
-      ),
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: (widget.size + 5), end: widget.size),
-        weight: 50,
-      ),
-    ]).animate(animationController);
-
-    animationController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        setState(() {
-          widget.food.isFav = true;
-        });
-      }
-      if (status == AnimationStatus.dismissed) {
-        setState(() {
-          widget.food.isFav = false;
-        });
-      }
-    });
   }
 
   @override
@@ -56,35 +32,45 @@ class _LikeButtonState extends State<LikeButton>
     animationController.dispose();
   }
 
+  void tapFav() {
+    setState(() {
+      widget.food.isFav
+          ? {animationController.reverse(), widget.food.isFav = false}
+          : {animationController.forward(), widget.food.isFav = true};
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: animationController,
-      builder: (context, child) {
-        return SizedBox(
-          width: 30,
-          height: 30,
-          child: IconButton(
-            padding: EdgeInsets.zero,
-            splashRadius: 1,
-            icon: FaIcon(
-              widget.food.isFav
-                  ? FontAwesomeIcons.solidHeart
-                  : FontAwesomeIcons.heart,
-              color: widget.food.isFav ? Colors.red : Colors.white,
-              size: animation.value,
-            ),
-            onPressed: () {
-              setState(() {
-                widget.food.isFav
-                    ? animationController.reverse()
-                    : animationController.forward();
-              });
-              print('onPressed ' + animation.toStringDetails());
-            },
-          ),
-        );
-      },
+    return GestureDetector(
+      onTap: tapFav,
+      child: Lottie.asset(
+        'assets/lottie/lf30_editor_1dljolly.json',
+        alignment: Alignment.center,
+        width: widget.size * 2,
+        height: widget.size * 2,
+        fit: BoxFit.fill,
+        controller: animationController,
+      ),
     );
   }
 }
+// IconButton(
+//             padding: EdgeInsets.zero,
+//             splashRadius: 1,
+//             icon: FaIcon(
+//               widget.food.isFav
+//                   ? FontAwesomeIcons.solidHeart
+//                   : FontAwesomeIcons.heart,
+//               color: widget.food.isFav ? Colors.red : Colors.white,
+//               size: animation.value,
+//             ),
+//             onPressed: () {
+//               setState(() {
+//                 widget.food.isFav
+//                     ? animationController.reverse()
+//                     : animationController.forward();
+//               });
+//               print('onPressed ' + animation.toStringDetails());
+//             },
+//           ),

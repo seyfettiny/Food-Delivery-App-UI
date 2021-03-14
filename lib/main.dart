@@ -5,7 +5,6 @@ import 'package:food_delivery_app/screens/map_screen.dart';
 import 'package:food_delivery_app/screens/mylist_screen.dart';
 import 'package:food_delivery_app/screens/search_screen.dart';
 import 'package:food_delivery_app/screens/voice_search_screen.dart';
-import 'package:food_delivery_app/screens/profile_screen.dart';
 
 void main() {
   Paint.enableDithering = true;
@@ -19,8 +18,10 @@ class MyApp extends StatelessWidget {
       title: 'Food Delivery App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        backgroundColor: Colors.deepOrange,
-        primarySwatch: Colors.grey,
+        accentColor: Colors.deepOrange,
+        primarySwatch: Colors.deepOrange,
+        hintColor: Colors.white,
+        brightness: Brightness.dark,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Gilroy',
         textTheme: TextTheme(
@@ -43,7 +44,6 @@ class MyAppContainer extends StatefulWidget {
 class _MyAppContainerState extends State<MyAppContainer> {
   int _selectedIndex = 0;
   PageController _pageController;
-  //TODO: seperate appbars
   List<String> appBarTitles = [
     'Home',
     'Search',
@@ -64,69 +64,26 @@ class _MyAppContainerState extends State<MyAppContainer> {
       onWillPop: () {
         return;
       },
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomRight,
-            end: Alignment.topLeft,
-            stops: [0.0, 1.0],
-            colors: [
-              Color(0xff161a1e),
-              Color(0xff25292d),
-            ],
-          ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: PageView(
+          controller: _pageController,
+          physics: NeverScrollableScrollPhysics(),
+          onPageChanged: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+          children: [
+            SafeArea(child: HomeScreen()),
+            SafeArea(child: SearchScreen()),
+            SafeArea(child: MyListScreen()),
+            SafeArea(child: MapScreen()),
+            SafeArea(child: VoiceSearchScreen()),
+          ],
         ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: buildAppBar(_selectedIndex),
-          body: PageView(
-            controller: _pageController,
-            physics: NeverScrollableScrollPhysics(),
-            onPageChanged: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            children: [
-              SafeArea(child: HomeScreen()),
-              SafeArea(child: SearchScreen()),
-              SafeArea(child: MyListScreen()),
-              SafeArea(child: MapScreen()),
-              SafeArea(child: VoiceSearchScreen()),
-            ],
-          ),
-          bottomNavigationBar: bottomNavigationBar(),
-        ),
+        bottomNavigationBar: bottomNavigationBar(),
       ),
-    );
-  }
-
-  AppBar buildAppBar(int index) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      centerTitle: true,
-      title: Text(
-        appBarTitles[index],
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-      ),
-      elevation: 0,
-      actions: [
-        Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: InkWell(
-            onTap: () {
-              return Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen()));
-            },
-            child: Hero(
-              tag: 'avatar',
-              child: ClipOval(
-                child: Image.asset('assets/images/user/avatar.png'),
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 

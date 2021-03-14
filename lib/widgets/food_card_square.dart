@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'package:food_delivery_app/models/food_model.dart';
+
 class FoodCardSquare extends StatelessWidget {
-  const FoodCardSquare({Key key}) : super(key: key);
+  final Food food;
+  const FoodCardSquare({
+    @required this.food,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        height: 200,
+        width: 120,
         margin: EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -30,18 +37,21 @@ class FoodCardSquare extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  'assets/images/restaurant/Ciqxn7FE4vE.jpg',
+                  food.imgUrl,
                   fit: BoxFit.cover,
-                  width: 110,
                   height: 140,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
-                  'Food Name',
+                  food.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

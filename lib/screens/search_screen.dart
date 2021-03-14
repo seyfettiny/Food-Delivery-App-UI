@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_delivery_app/helper/custom_search_delegate.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key key}) : super(key: key);
@@ -6,7 +8,48 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(child: Text('SearchScreen')),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomRight,
+          end: Alignment.topLeft,
+          stops: [0.0, 1.0],
+          colors: [
+            Color(0xff161a1e),
+            Color(0xff25292d),
+          ],
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: buildAppBar(context),
+        body: Container(),
+      ),
+    );
+  }
+
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      brightness: Brightness.dark,
+      elevation: 0,
+      actionsIconTheme: IconThemeData(color: Colors.white),
+      centerTitle: true,
+      title: Text('Search'),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: IconButton(
+            icon: FaIcon(FontAwesomeIcons.search),
+            iconSize: 20,
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: CustomSearchDelegate(),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
