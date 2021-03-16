@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_delivery_app/models/user_model.dart';
@@ -21,8 +22,13 @@ class ReviewWidget extends StatelessWidget {
             index % 4 == 0
                 ? buildLiveWidget()
                 : ClipOval(
-                    child: Image.asset(
-                      userList[index].imgUrl,
+                    child: CachedNetworkImage(
+                      imageUrl: userList[index].imgUrl,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) =>
+                              CircularProgressIndicator(
+                                  value: downloadProgress.progress),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                       height: 100,
                       width: 100,
                     ),
@@ -44,8 +50,11 @@ class ReviewWidget extends StatelessWidget {
             color: Colors.deepOrange,
             padding: EdgeInsets.all(2),
             child: ClipOval(
-              child: Image.asset(
-                userList[index].imgUrl,
+              child: CachedNetworkImage(
+                imageUrl: userList[index].imgUrl,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    CircularProgressIndicator(value: downloadProgress.progress),
+                errorWidget: (context, url, error) => Icon(Icons.error),
                 height: 100,
                 width: 100,
               ),

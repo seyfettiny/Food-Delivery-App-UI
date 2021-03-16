@@ -30,7 +30,8 @@
 .pub-cache/
 .pub/
 /build/
-/lib/models/food_model.dart
+
+/android/app/google-services.json
 # Web related
 lib/generated_plugin_registrant.dart
 

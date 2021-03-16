@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:food_delivery_app/models/food_model.dart';
@@ -68,8 +69,12 @@ class HomeScreen extends StatelessWidget {
             child: Hero(
               tag: 'avatar',
               child: ClipOval(
-                child: Image.asset(
-                  userList[8].imgUrl,
+                child: CachedNetworkImage(
+                  imageUrl: userList[8].imgUrl,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      CircularProgressIndicator(
+                          value: downloadProgress.progress),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
             ),

@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_delivery_app/models/food_model.dart';
+import 'package:food_delivery_app/screens/cart_screen.dart';
 import 'package:food_delivery_app/widgets/custom_button.dart';
 import 'package:food_delivery_app/widgets/like_button.dart';
 import 'package:food_delivery_app/widgets/food_container.dart';
@@ -29,8 +32,9 @@ class FoodDetailScreen extends StatelessWidget {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          appBar: buildAppBar(),
-          bottomNavigationBar: CustomButton(text: 'Add to Order'),
+          appBar: buildAppBar(context),
+          bottomNavigationBar:
+              CustomButton.addToCart(food: food, text: 'Add to Order'),
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -136,28 +140,29 @@ class FoodDetailScreen extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          right: -50,
-                          bottom: -10,
+                          right: -40,
+                          bottom: 0,
                           child: Hero(
-                            tag: '${food.imgUrl}',
-                            child: Container(
-                              decoration: BoxDecoration(
-                                //TODO: use BackDropFilter as shadow, shaped as png
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    offset: Offset(-10, 15),
-                                    blurRadius: 15,
-                                  )
-                                ],
-                              ),
+                            tag: food.imgUrl,
+                            child: ImageFiltered(
+                              imageFilter:
+                                  ImageFilter.blur(sigmaX: 30, sigmaY: 30),
                               child: Image.asset(
                                 food.imgUrl,
-                                width: 250,
-                                height: 250,
+                                width: 230,
+                                height: 230,
+                                color: Colors.black.withOpacity(0.6),
                               ),
                             ),
+                          ),
+                        ),
+                        Positioned(
+                          right: -25,
+                          bottom: 0,
+                          child: Image.asset(
+                            food.imgUrl,
+                            width: 220,
+                            height: 220,
                           ),
                         ),
                       ],
@@ -191,7 +196,7 @@ class FoodDetailScreen extends StatelessWidget {
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -203,7 +208,10 @@ class FoodDetailScreen extends StatelessWidget {
       actions: [
         IconButton(
           icon: FaIcon(FontAwesomeIcons.shoppingBag),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => CartScreen()));
+          },
         ),
       ],
       title: Text(

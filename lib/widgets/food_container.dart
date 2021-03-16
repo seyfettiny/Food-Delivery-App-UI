@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:food_delivery_app/screens/food_detail_screen.dart';
@@ -94,30 +96,31 @@ class FoodContainer extends StatelessWidget {
                       ),
                       Positioned(
                         //TODO: animatedbuilder rotation
-                        top: 20,
-                        right: -10,
+                        top: 30,
+                        right: 0,
                         child: Hero(
                           tag: foodList[index].imgUrl,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              //TODO: use BackDropFilter as shadow, shaped as png
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(-10, 15),
-                                  blurRadius: 15,
-                                )
-                              ],
-                            ),
+                          child: ImageFiltered(
+                            imageFilter:
+                                ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                             child: Image.asset(
                               foodList[index].imgUrl,
                               width: 130,
                               height: 130,
+                              color: Colors.black.withOpacity(0.5),
                             ),
                           ),
                         ),
                       ),
+                      Positioned(
+                        top: 20,
+                        right: -10,
+                        child: Image.asset(
+                          foodList[index].imgUrl,
+                          width: 130,
+                          height: 130,
+                        ),
+                      )
                     ],
                   ),
                 ),

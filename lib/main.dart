@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_delivery_app/screens/home_screen.dart';
@@ -8,6 +9,7 @@ import 'package:food_delivery_app/screens/voice_search_screen.dart';
 
 void main() {
   Paint.enableDithering = true;
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -42,8 +44,9 @@ class MyAppContainer extends StatefulWidget {
 }
 
 class _MyAppContainerState extends State<MyAppContainer> {
+  bool _initialized = false;
+  bool _error = false;
   int _selectedIndex = 0;
-  PageController _pageController;
   List<String> appBarTitles = [
     'Home',
     'Search',
@@ -51,29 +54,47 @@ class _MyAppContainerState extends State<MyAppContainer> {
     'Map',
     'Voice Search'
   ];
+  void initializeFlutterFire() async {
+    try {
+      await Firebase.initializeApp();
+      setState(() {
+        _initialized = true;
+      });
+    } catch (e) {
+      setState(() {
+        _error = true;
+        print(e);
+      });
+    }
+  }
 
   @override
   void initState() {
+    initializeFlutterFire();
     super.initState();
-    _pageController = PageController();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_error) {
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Text('Something went wrong'),
+      );
+    }
+
+    if (!_initialized) {
+      return CircularProgressIndicator();
+    }
     return WillPopScope(
       onWillPop: () {
         return;
       },
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: PageView(
-          controller: _pageController,
-          physics: NeverScrollableScrollPhysics(),
-          onPageChanged: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
+        body: IndexedStack(
+          index: _selectedIndex,
           children: [
             SafeArea(child: HomeScreen()),
             SafeArea(child: SearchScreen()),
@@ -100,9 +121,6 @@ class _MyAppContainerState extends State<MyAppContainer> {
         if (index != _selectedIndex) {
           setState(() {
             _selectedIndex = index;
-            _pageController.jumpToPage(
-              index,
-            );
           });
         }
       },

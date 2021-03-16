@@ -42,7 +42,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -59,8 +59,8 @@ List restaurantList = [
     restaurantType: ['Casual Dining', 'Fast Food', 'Buffet'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -69,7 +69,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -86,8 +86,8 @@ List restaurantList = [
     restaurantType: ['Fine Dinner', 'Family', 'Coffee House'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -96,7 +96,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -113,8 +113,8 @@ List restaurantList = [
     restaurantType: ['Cafe', 'Fine Dinner', 'Fast Food'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -123,7 +123,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -140,8 +140,8 @@ List restaurantList = [
     restaurantType: ['Fine Dinner', 'Family'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -150,7 +150,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -167,8 +167,8 @@ List restaurantList = [
     restaurantType: ['Fine Dinner', 'Family', 'Cafe'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -177,7 +177,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -194,8 +194,8 @@ List restaurantList = [
     restaurantType: ['Fast Food', 'Family'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -204,7 +204,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -221,8 +221,8 @@ List restaurantList = [
     restaurantType: ['Fast Food', 'Family'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -231,7 +231,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -248,8 +248,8 @@ List restaurantList = [
     restaurantType: ['Fine Dinner', 'Family'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -258,7 +258,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -275,8 +275,8 @@ List restaurantList = [
     restaurantType: ['Fine Dinner', 'Family'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -285,7 +285,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -302,8 +302,8 @@ List restaurantList = [
     restaurantType: ['Fine Dinner', 'Family'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -312,7 +312,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -329,8 +329,8 @@ List restaurantList = [
     restaurantType: ['Fine Dinner', 'Cafe'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -339,7 +339,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -356,8 +356,8 @@ List restaurantList = [
     restaurantType: ['Cafe', 'Family'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -366,7 +366,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {
@@ -383,8 +383,8 @@ List restaurantList = [
     restaurantType: ['Fine Dinner', 'Family'],
     foodSection: {
       'First Meal': soupList,
-      'Hot Meals': soupList,
-      'Pizza': soupList,
+      'Hot Meals': steakList,
+      'Pizza': pizzaList,
     },
     beerSection: {
       'Ale': aleBeerList,
@@ -393,7 +393,7 @@ List restaurantList = [
     },
     wineSection: {
       'Red': redWineList,
-      'White': lagerBeerList,
+      'White': whiteWineList,
       'Sparkling': sparklingWineList,
     },
     hotDrinkSection: {

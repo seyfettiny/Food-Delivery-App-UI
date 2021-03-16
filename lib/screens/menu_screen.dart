@@ -32,7 +32,7 @@ class MenuScreen extends StatelessWidget {
             appBar: buildAppBar(context),
             body: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: TabBarView(
+              child: IndexedStack(
                 children: [
                   buildTabFood(restaurant.foodSection),
                   buildTabFood(restaurant.beerSection),
