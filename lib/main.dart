@@ -1,13 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_delivery_app/screens/home_screen.dart';
-import 'package:food_delivery_app/screens/map_screen.dart';
-import 'package:food_delivery_app/screens/mylist_screen.dart';
-import 'package:food_delivery_app/screens/search_screen.dart';
-import 'package:food_delivery_app/screens/voice_search_screen.dart';
 
-void main() {
+import 'ui/screens/home_screen.dart';
+import 'ui/screens/map_screen.dart';
+import 'ui/screens/mylist_screen.dart';
+import 'ui/screens/search_screen.dart';
+import 'ui/screens/voice_search_screen.dart';
+
+void main() async {
   Paint.enableDithering = true;
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -54,6 +55,7 @@ class _MyAppContainerState extends State<MyAppContainer> {
     'Map',
     'Voice Search'
   ];
+
   void initializeFlutterFire() async {
     try {
       await Firebase.initializeApp();
@@ -63,15 +65,15 @@ class _MyAppContainerState extends State<MyAppContainer> {
     } catch (e) {
       setState(() {
         _error = true;
-        print(e);
+        print('initialization error:' + e.toString());
       });
     }
   }
 
   @override
   void initState() {
-    initializeFlutterFire();
     super.initState();
+    initializeFlutterFire();
   }
 
   @override

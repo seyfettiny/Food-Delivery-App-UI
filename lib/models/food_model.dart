@@ -1,4 +1,114 @@
+// To parse this JSON data, do
+//
+//     final food = foodFromJson(jsonString);
+
+import 'dart:convert';
+
+Food foodFromJson(String str) => Food.fromJson(json.decode(str));
+
+String foodToJson(Food data) => json.encode(data.toJson());
+
 class Food {
+  List<FoodElement> soupList;
+  List<FoodElement> steakList;
+  List<FoodElement> pizzaList;
+  List<FoodElement> pastaList;
+  List<FoodElement> burgerList;
+  List<FoodElement> aleBeerList;
+  List<FoodElement> lagerBeerList;
+  List<FoodElement> wheatBeerList;
+  List<FoodElement> redWineList;
+  List<FoodElement> whiteWineList;
+  List<FoodElement> sparklingWineList;
+  List<FoodElement> teaList;
+  List<FoodElement> dripCoffeeList;
+  List<FoodElement> espressoList;
+  Food({
+    this.soupList,
+    this.steakList,
+    this.pizzaList,
+    this.pastaList,
+    this.burgerList,
+    this.aleBeerList,
+    this.lagerBeerList,
+    this.wheatBeerList,
+    this.redWineList,
+    this.whiteWineList,
+    this.sparklingWineList,
+    this.teaList,
+    this.dripCoffeeList,
+    this.espressoList,
+  });
+
+  factory Food.fromJson(Map<String, dynamic> json) => Food(
+        soupList: List<FoodElement>.from(
+            json['soupList'].map((x) => FoodElement.fromJson(x))),
+        steakList: List<FoodElement>.from(
+            json['steakList'].map((x) => FoodElement.fromJson(x))),
+        pizzaList: List<FoodElement>.from(
+            json['pizzaList'].map((x) => FoodElement.fromJson(x))),
+        pastaList: List<FoodElement>.from(
+            json['pastaList'].map((x) => FoodElement.fromJson(x))),
+        burgerList: List<FoodElement>.from(
+            json['burgerList'].map((x) => FoodElement.fromJson(x))),
+        aleBeerList: List<FoodElement>.from(
+            json['aleBeerList'].map((x) => FoodElement.fromJson(x))),
+        lagerBeerList: List<FoodElement>.from(
+            json['lagerBeerList'].map((x) => FoodElement.fromJson(x))),
+        wheatBeerList: List<FoodElement>.from(
+            json['wheatBeerList'].map((x) => FoodElement.fromJson(x))),
+        redWineList: List<FoodElement>.from(
+            json['redWineList'].map((x) => FoodElement.fromJson(x))),
+        whiteWineList: List<FoodElement>.from(
+            json['whiteWineList'].map((x) => FoodElement.fromJson(x))),
+        sparklingWineList: List<FoodElement>.from(
+            json['sparklingWineList'].map((x) => FoodElement.fromJson(x))),
+        teaList: List<FoodElement>.from(
+            json['teaList'].map((x) => FoodElement.fromJson(x))),
+        dripCoffeeList: List<FoodElement>.from(
+            json['dripCoffeeList'].map((x) => FoodElement.fromJson(x))),
+        espressoList: List<FoodElement>.from(
+            json['espressoList'].map((x) => FoodElement.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        'soupList': List<dynamic>.from(soupList.map((x) => x.toJson())),
+        'steakList': List<dynamic>.from(steakList.map((x) => x.toJson())),
+        'pizzaList': List<dynamic>.from(pizzaList.map((x) => x.toJson())),
+        'pastaList': List<FoodElement>.from(pastaList.map((x) => x.toJson())),
+        'burgerList': List<FoodElement>.from(burgerList.map((x) => x.toJson())),
+        'aleBeerList':
+            List<FoodElement>.from(aleBeerList.map((x) => x.toJson())),
+        'lagerBeerList':
+            List<FoodElement>.from(lagerBeerList.map((x) => x.toJson())),
+        'wheatBeerList':
+            List<FoodElement>.from(wheatBeerList.map((x) => x.toJson())),
+        'redWineList':
+            List<FoodElement>.from(redWineList.map((x) => x.toJson())),
+        'whiteWineList':
+            List<FoodElement>.from(whiteWineList.map((x) => x.toJson())),
+        'sparklingWineList':
+            List<FoodElement>.from(sparklingWineList.map((x) => x.toJson())),
+        'teaList': List<FoodElement>.from(teaList.map((x) => x.toJson())),
+        'dripCoffeeList':
+            List<FoodElement>.from(dripCoffeeList.map((x) => x.toJson())),
+        'espressoList':
+            List<FoodElement>.from(espressoList.map((x) => x.toJson())),
+      };
+}
+
+class FoodElement {
+  FoodElement({
+    this.name,
+    this.description,
+    this.imgUrl,
+    this.serveTime,
+    this.price,
+    this.calories,
+    this.weight,
+    this.isFav,
+  });
+
   String name;
   String description;
   String imgUrl;
@@ -7,829 +117,26 @@ class Food {
   int calories;
   String weight;
   bool isFav;
-  Food({
-    this.name,
-    this.description,
-    this.imgUrl,
-    this.price,
-    this.serveTime,
-    this.calories,
-    this.weight,
-    this.isFav,
-  });
+
+  factory FoodElement.fromJson(Map<String, dynamic> json) => FoodElement(
+        name: json['name'],
+        description: json['description'],
+        imgUrl: json['imgUrl'],
+        serveTime: json['serveTime'],
+        price: json['price'],
+        calories: json['calories'],
+        weight: json['weight'],
+        isFav: json['isFav'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'description': description,
+        'imgUrl': imgUrl,
+        'serveTime': serveTime,
+        'price': price,
+        'calories': calories,
+        'weight': weight,
+        'isFav': isFav,
+      };
 }
-
-String _soupDescription =
-    'Some soups are served with large chunks of meat or vegetables left in the liquid, while others are served as a broth. A broth is a flavored liquid usually derived from boiling a type of meat with bone, a spice mix, or a vegetable mix for a period of time in a stock. A potage is a category of thick soups, stews, or porridges, in some of which meat and vegetables are boiled together with water until they form a thick mush. Bisques are heavy cream soups traditionally prepared with shellfish, but can be made with any type of seafood or other base ingredients. Cream soups are dairy based soups. Although they may be consumed on their own, or with a meal, the canned, condensed form of cream soup is sometimes used as a quick sauce in a variety of meat and pasta convenience food dishes, such as casseroles. Similar to bisques, chowders are thick soups usually containing some type of starch.';
-String _steakDescription =
-    'Beefsteak is a flat cut of beef, usually cut perpendicular to the muscle fibers. Beefsteaks are usually grilled, pan-fried, or broiled. The more tender cuts from the loin and rib are cooked quickly, using dry heat, and served whole. Less tender cuts from the chuck or round are cooked with moist heat or are mechanically tenderized.';
-String _pizzaDescription =
-    'in Italy, pizza has gone through numerous transformations to become the dish that so many people know and love today. But if you’re just opening your first pizza place or want to add a pizza oven in your restaurant, it can be difficult to decide what style of pizza your restaurant will make. We discuss the different types of pizza, their history, and what you’ll need to make them, so you can start serving up delicious slices to your guests.';
-String _pastaDescription =
-    'There are many different varieties of pasta.[1] They are usually sorted by size, being long (pasta lunga), short (pasta corta), stuffed (ripiena), cooked in broth (pastina), stretched (strascinati) or in dumpling-like form (gnocchi/gnocchetti). Yet, due to the variety of shapes and regional variants, "one man\'s gnocchetto can be another\'s strascinato". Some pasta varieties are uniquely regional and not widely known; many types have different names based on region or language. For example, the cut rotelle is also called ruote in Italy and wagon wheels in the United States. Manufacturers and cooks often invent new shapes of pasta, or may rename pre-existing shapes for marketing reasons. Italian pasta names often end with the masculine plural diminutive suffixes -ini, -elli, -illi, -etti or the feminine plurals -ine, -elle etc., all conveying the sense of "little"; or with the augmentative suffixes -oni, -one, meaning "large". Other suffixes like -otti ("largish") and -acci ("rough", "badly made") may also occur. In Italian, all pasta type names are plural.';
-String _hamburgerDescription =
-    'A hamburger made using beef from Angus cattle. The name "Angus burger" is used by several fast-food hamburger chains for one or more "premium" burgers; however, it does not belong to any single company. Pre-made frozen Angus burgers are increasingly available from retailers.';
-String _beerDescription =
-    'The higher proportion of pale malts results in a lighter colour. The term first appeared around 1703 for beers made from malts dried with high-carbon coke, which resulted in a lighter colour than other beers popular at that time. Different brewing practices and hop levels have resulted in a range of different tastes and strengths within the pale ale family.';
-String _wineDescription =
-    'One of the most well-known red wines, merlot is a softer and more accessible red wine. It typically tastes like rich, ripe fruit and can have subtle earthy undertones. There are some sweet red wines which we\'ll cover later, but the most popular red wines are dry with subtle tones of spices. There is usually also a higher wine alcohol content in red wine, making them better for pairing with food.';
-String _hotDrinks =
-    'With the invention of the Gaggia machine, espresso, and espresso with milk such as cappuccino and latte, spread in popularity from Italy to the UK in the 1950s. It then came to America, and with the rise in popularity of the Italian coffee culture in the 1980s it began to spread worldwide via coffeehouses and coffeehouse chains. The caffeine content in coffee beans may be reduced via one of several decaffeination processes to produce decaffeinated coffee, also known as "decaf" coffee, which may be served as regular, espresso or instant coffee.';
-
-List soupList = [
-  Food(
-      name: 'Chicken Noodle Soup',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG95.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Lentil soup',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG12.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Bacon soup',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG22.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Beef Noodle soup',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG35.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Cheese soup',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG14.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Cream of tomato',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG52.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Gumbo',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG80.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Curry Mee',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG86.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Gazpacho',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG98.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Minestrone',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG99.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Vegetable soup',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG100.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Solyanka',
-      description: _soupDescription,
-      imgUrl: 'assets/images/food/soup_PNG100.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-];
-
-List steakList = [
-  Food(
-      name: 'Beef Manhattan',
-      description: _steakDescription,
-      imgUrl: 'assets/images/food/steak_PNG24.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Fajita',
-      description: _steakDescription,
-      imgUrl: 'assets/images/food/steak_PNG44.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Pittsburgh rare',
-      description: _steakDescription,
-      imgUrl: 'assets/images/food/steak_PNG47.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Delmonico steak',
-      description: _steakDescription,
-      imgUrl: 'assets/images/food/steak_PNG48.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Steak au poivre',
-      description: _steakDescription,
-      imgUrl: 'assets/images/food/steak_PNG52.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-];
-
-List pizzaList = [
-  Food(
-      name: 'Detroit Pizza',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/9-pizza-png-image.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Greek Pizza',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/7-pizza-png-image.png',
-      price: 30,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'St. Louis Pizza',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/4-pizza-png-image.png',
-      price: 25,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Quattro Stagioni',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/pizza_PNG44037.png',
-      price: 10,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Calzone',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/pizza_PNG44046.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Quattro Stagioni',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/pizza_PNG44051.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Marinara',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/pizza_PNG44053.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Frutti di mare',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/pizza_PNG44053.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Vegetariana',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/pizza_PNG44092.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Hawaii',
-      description: _pizzaDescription,
-      imgUrl: 'assets/images/food/pizza_PNG44092.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List pastaList = [
-  Food(
-      name: 'Casunziei ampezzani',
-      description: _pastaDescription,
-      imgUrl: 'assets/images/food/pasta_PNG18.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Spaghetti allo scoglio',
-      description: _pastaDescription,
-      imgUrl: 'assets/images/food/pasta_PNG34.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Penne all’arrabbiata',
-      description: _pastaDescription,
-      imgUrl: 'assets/images/food/pasta_PNG63.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Spaghetti alla carrettiera',
-      description: _pastaDescription,
-      imgUrl: 'assets/images/food/pasta_PNG67.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Ziti al forno',
-      description: _pastaDescription,
-      imgUrl: 'assets/images/food/pasta_PNG93.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Fettuccine',
-      description: _pastaDescription,
-      imgUrl: 'assets/images/food/pasta_PNG95.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Insalata di pasta',
-      description: _pastaDescription,
-      imgUrl: 'assets/images/food/pasta_PNG96.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List burgerList = [
-  Food(
-      name: 'Slugburger',
-      description: _hamburgerDescription,
-      imgUrl: 'assets/images/food/burger_sandwich_PNG96745.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Barbecue burger',
-      description: _hamburgerDescription,
-      imgUrl: 'assets/images/food/burger_sandwich_PNG96755.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Chili burger',
-      description: _hamburgerDescription,
-      imgUrl: 'assets/images/food/burger_sandwich_PNG96761.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Chicken burger',
-      description: _hamburgerDescription,
-      imgUrl: 'assets/images/food/9-2-burger-png-hd.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Buffalo burger',
-      description: _hamburgerDescription,
-      imgUrl: 'assets/images/food/burger_sandwich_PNG96773.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Salmon burger',
-      description: _hamburgerDescription,
-      imgUrl: 'assets/images/food/burger_sandwich_PNG96781.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Steak burger',
-      description: _hamburgerDescription,
-      imgUrl: 'assets/images/food/burger_sandwich_PNG96783.png',
-      price: 20,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List aleBeerList = [
-  Food(
-      name: 'Pale ale',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer1-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Brown ale',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer2-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Burton ale',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer3-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Belgian ale',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer4-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Cask ale',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer1-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Scotch ale',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer3-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List lagerBeerList = [
-  Food(
-      name: 'Vienna lager',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/beer_PNG2388.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Pale lager',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/beer_PNG2347.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Dark lager',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/beer_PNG2361.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Helles',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/beer_PNG2389.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Pilsner',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/beer_PNG2390.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List wheatBeerList = [
-  Food(
-      name: 'Weizenbier',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer3-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Witbier',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer1-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Grodziskie',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer4-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Lambic',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer2-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Berliner Weiße',
-      description: _beerDescription,
-      imgUrl: 'assets/images/food/3-2-beer1-png.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List redWineList = [
-  Food(
-      name: 'Cabernet sauvignon',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG9464.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Merlot',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG99045.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Pinot noir',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG99046.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Zinfandel',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine1_PNG99056.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Malbec',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG99046.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List whiteWineList = [
-  Food(
-      name: 'Sauvignon blanc',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG9461.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Riesling',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine1_PNG99056.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Gewürztraminer',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG9467.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Chablis',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG9461.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Chardonnay',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG9467.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-];
-
-List sparklingWineList = [
-  Food(
-      name: 'Champagne',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG9461.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Champagne',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine2_PNG99056.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Champagne',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine_PNG9461.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Champagne',
-      description: _wineDescription,
-      imgUrl: 'assets/images/food/wine4_PNG99056.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List teaList = [
-  Food(
-      name: 'Yellow tea',
-      description: _hotDrinks,
-      imgUrl: 'assets/images/food/1-2-tea-transparent.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Lemon tea',
-      description: _hotDrinks,
-      imgUrl: 'assets/images/food/tea_PNG98911.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Fruit tea',
-      description: _hotDrinks,
-      imgUrl: 'assets/images/food/tea_PNG98912.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Yellow tea',
-      description: _hotDrinks,
-      imgUrl: 'assets/images/food/1-2-tea-transparent.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Lemon tea',
-      description: _hotDrinks,
-      imgUrl: 'assets/images/food/tea_PNG98911.png',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List dripCoffeeList = [
-  Food(
-      name: 'Arabica',
-      description: _hotDrinks,
-      imgUrl: 'cups1',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Liberica ',
-      description: _hotDrinks,
-      imgUrl: 'cups4',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Robusta',
-      description: _hotDrinks,
-      imgUrl: 'cups2',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Arabica',
-      description: _hotDrinks,
-      imgUrl: 'cups1',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
-
-List espressoList = [
-  Food(
-      name: 'Caffè Americano',
-      description: _hotDrinks,
-      imgUrl: 'cups3',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Caffè Lungo',
-      description: _hotDrinks,
-      imgUrl: 'cups2',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: true),
-  Food(
-      name: 'Manilo',
-      description: _hotDrinks,
-      imgUrl: 'cups4',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-  Food(
-      name: 'Café Cubano',
-      description: _hotDrinks,
-      imgUrl: 'cups3',
-      price: 5,
-      serveTime: '10 min',
-      calories: 80,
-      weight: '400 gr',
-      isFav: false),
-];
