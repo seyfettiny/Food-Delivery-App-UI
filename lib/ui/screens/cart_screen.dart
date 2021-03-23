@@ -28,6 +28,14 @@ class _CartScreenState extends State<CartScreen> {
     _cartRef = firebaseDatabase.reference().child('cart');
   }
 
+  String calculateTotalAmount(List items) {
+    var tmp = 0;
+    for (var item in items) {
+      tmp += ((item.amount) * (item.food.price));
+    }
+    return tmp.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,18 +51,66 @@ class _CartScreenState extends State<CartScreen> {
             ],
           ),
         ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: buildAppBar(context, 'Checkout Order'),
-          bottomNavigationBar: CustomButton(
-            text: 'Checkout',
-          ),
-          body: FutureBuilder(
-              future: firebaseBaseClass.fetchCart(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  var cartItems = snapshot.data;
-                  return Container(
+        child: FutureBuilder(
+            future: firebaseBaseClass.fetchCart(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var cartItems = snapshot.data;
+                return Scaffold(
+                  backgroundColor: Colors.transparent,
+                  appBar: buildAppBar(context, 'Checkout Order'),
+                  bottomSheet: BottomSheet(
+                    onClosing: () {},
+                    builder: (context) {
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        height: 100,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Total Amount',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  '€  ' + calculateTotalAmount(cartItems),
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Serve time',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  calculateTotalAmount(cartItems) + '  PM',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  bottomNavigationBar: CustomButton(
+                    text: 'Checkout',
+                  ),
+                  body: Container(
                     height: MediaQuery.of(context).size.height,
                     child: AnimatedList(
                         initialItemCount: cartItems.length,
@@ -116,7 +172,6 @@ class _CartScreenState extends State<CartScreen> {
                                               .downloadFoodImageURL(
                                                   cartItems[index].food.imgUrl),
                                           builder: (context, snapshot) {
-                                            print(cartItems[index].food.imgUrl);
                                             if (snapshot.hasData) {
                                               return CachedNetworkImage(
                                                   imageUrl: snapshot.data);
@@ -147,7 +202,8 @@ class _CartScreenState extends State<CartScreen> {
                                           TextButton.icon(
                                             onPressed: () {
                                               setState(() {
-                                                //increaseCartItemAmount(cartItem,index, cartItem.amount);
+                                                increaseCartItemAmount(
+                                                    index, cartItem.amount);
                                               });
                                             },
                                             icon: Icon(Icons.add),
@@ -164,26 +220,28 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           );
                         }),
-                  );
-                } else {
-                  print(snapshot.error);
-                  return Center(child: CircularProgressIndicator());
-                }
-              }),
-        ),
+                  ),
+                );
+              } else {
+                print(snapshot.error);
+                return Center(child: CircularProgressIndicator());
+              }
+            }),
       ),
     );
   }
 
-/*
-  void increaseCartItemAmount(Cart cart, int index, int amount) async {
+  void increaseCartItemAmount(int index, int amount) async {
     await _cartRef.child('$index').update({
       'amount': amount++,
+    }).catchError((error, stackTrace) {
+      print(error + stackTrace);
     }).then((_) {
       print('Transaction  committed.');
     });
   }
 
+/*
   void decreaseCartItemAmount(Cart cart, int index, int amount) async {
     await _cartRef.child('$index').update({
       'amount': amount--,

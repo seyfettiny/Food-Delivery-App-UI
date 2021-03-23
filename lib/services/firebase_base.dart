@@ -28,7 +28,7 @@ class FirebaseBaseClass {
       var cart = cartFromJson(response.body);
       return cart;
     } else {
-      throw Exception('Failed to load Foods');
+      throw Exception('Failed to load Cart');
     }
   }
 
@@ -49,43 +49,28 @@ class FirebaseBaseClass {
       var restaurants = restaurantFromJson(response.body);
       return restaurants;
     } else {
-      throw Exception('Failed to load Foods');
+      throw Exception('Failed to load Restaurants');
     }
   }
 
   Future<String> downloadUserImageURL(String name) async {
-    try {
-      var downloadURL = await firebase_storage.FirebaseStorage.instance
-          .ref('/assets/images/user/$name')
-          .getDownloadURL();
-      return downloadURL;
-    } catch (e) {
-      print(e + '$name');
-    }
-    return '';
+    var downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref('/assets/images/user/$name')
+        .getDownloadURL();
+    return downloadURL;
   }
 
   Future<String> downloadFoodImageURL(String name) async {
-    try {
-      var downloadURL = await firebase_storage.FirebaseStorage.instance
-          .ref('/assets/images/food/$name')
-          .getDownloadURL();
-      return downloadURL;
-    } catch (e) {
-      print(e + '$name');
-    }
-    return '';
+    var downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref('/assets/images/food/$name')
+        .getDownloadURL();
+    return downloadURL;
   }
 
   Future<String> downloadRestaurantImageURL(String name) async {
-    try {
-      var downloadURL = await firebase_storage.FirebaseStorage.instance
-          .ref('/assets/images/restaurant/$name')
-          .getDownloadURL();
-      return downloadURL;
-    } catch (e) {
-      print(e + '$name');
-    }
-    return '';
+    var downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref('/assets/images/restaurant/$name')
+        .getDownloadURL();
+    return downloadURL;
   }
 }
