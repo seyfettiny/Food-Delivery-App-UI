@@ -102,6 +102,7 @@ class FoodElement {
     this.name,
     this.description,
     this.imgUrl,
+    this.imgUrlSquare,
     this.serveTime,
     this.price,
     this.calories,
@@ -112,6 +113,7 @@ class FoodElement {
   String name;
   String description;
   String imgUrl;
+  String imgUrlSquare;
   String serveTime;
   int price;
   int calories;
@@ -122,6 +124,7 @@ class FoodElement {
         name: json['name'],
         description: json['description'],
         imgUrl: json['imgUrl'],
+        imgUrlSquare: json['imgUrlSquare'],
         serveTime: json['serveTime'],
         price: json['price'],
         calories: json['calories'],
@@ -133,6 +136,7 @@ class FoodElement {
         'name': name,
         'description': description,
         'imgUrl': imgUrl,
+        'imgUrlSquare': imgUrlSquare,
         'serveTime': serveTime,
         'price': price,
         'calories': calories,

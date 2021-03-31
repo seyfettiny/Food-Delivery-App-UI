@@ -6,9 +6,9 @@ import 'package:food_delivery_app/services/firebase_base.dart';
 import 'package:food_delivery_app/ui/widgets/food_card_square.dart';
 import 'package:food_delivery_app/ui/widgets/restaurant_card_visited.dart';
 import 'package:food_delivery_app/ui/widgets/review_widget.dart';
+import 'package:food_delivery_app/ui/screens/restaurant_screen.dart';
 
 import 'food_detail_screen.dart';
-import 'menu_screen.dart';
 import 'profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -81,8 +81,8 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
                       reviewSection('Reviews', users),
                       foodsectionsquare('Order Again', foods.pizzaList),
                       foodsectionsquare('Popular', foods.steakList),
-                      foodsectionsquare('Recommended', foods.soupList),
-                      foodsectionsquare('Recommended', foods.burgerList),
+                      foodsectionsquare('Recommended', foods.pastaList),
+                      foodsectionsquare('You Might Like', foods.burgerList),
                     ],
                   ),
                 ),
@@ -118,10 +118,12 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
                             builder: (context) => ProfileScreen(user: user)));
                   },
                   child: Hero(
-                    tag: 'avatar${snapshot.data}',
+                    tag: 'homeavatar${snapshot.data}',
                     child: ClipOval(
                       child: CachedNetworkImage(
                         imageUrl: snapshot.data,
+                        memCacheHeight: 32,
+                        memCacheWidth: 32,
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
@@ -129,7 +131,7 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
                 ),
               );
             } else {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             }
           },
         ),
@@ -151,7 +153,7 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          MenuScreen(restaurant: restaurants[index])));
+                          RestaurantScreen(restaurant: restaurants[index])));
             },
             child: AnimationConfiguration.staggeredList(
               position: index,
@@ -246,11 +248,13 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => FoodDetailScreen(
-                                food: tempList[index],
-                              )));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FoodDetailScreen(
+                        food: tempList[index],
+                      ),
+                    ),
+                  );
                 },
                 child: AnimationConfiguration.staggeredList(
                   position: index,

@@ -40,7 +40,8 @@ class FoodCardSquare extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FutureBuilder(
-                future: firebaseBaseClass.downloadFoodImageURL(food.imgUrl),
+                future:
+                    firebaseBaseClass.downloadFoodImageURL(food.imgUrlSquare),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     return ClipRRect(
@@ -48,16 +49,18 @@ class FoodCardSquare extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: snapshot.data,
                         fit: BoxFit.cover,
+                        maxHeightDiskCache: 200,
+                        maxWidthDiskCache: 120,
                         height: 140,
+                        width: 120,
                       ),
                     );
                   } else {
-                    return Container(
-                      height: 140,
-                      child: Shimmer.fromColors(
-                        baseColor: Colors.grey,
-                        highlightColor: Colors.amber,
-                        child: Container(),
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey,
+                      highlightColor: Colors.amber,
+                      child: Container(
+                        height: 140,
                       ),
                     );
                   }

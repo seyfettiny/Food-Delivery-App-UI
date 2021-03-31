@@ -35,6 +35,8 @@ class ReviewWidget extends StatelessWidget {
                             imageUrl: snapshot.data,
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
+                            memCacheHeight: 90,
+                            memCacheWidth: 90,
                             height: 90,
                             width: 90,
                           ),
@@ -71,6 +73,8 @@ class ReviewWidget extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: url,
                 errorWidget: (context, url, error) => Icon(Icons.error),
+                memCacheHeight: 90,
+                memCacheWidth: 90,
                 height: 90,
                 width: 90,
               ),

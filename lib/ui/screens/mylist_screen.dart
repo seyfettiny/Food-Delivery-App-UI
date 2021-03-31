@@ -34,7 +34,6 @@ class MyListScreen extends StatelessWidget {
           if (snapshot.hasData) {
             var users = snapshot.data[0];
             List restaurants = snapshot.data[1];
-            restaurants.shuffle();
             return Scaffold(
               backgroundColor: Colors.transparent,
               appBar: buildAppBar(context, 'My List', users[0]),

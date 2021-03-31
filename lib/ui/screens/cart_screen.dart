@@ -95,7 +95,7 @@ class _CartScreenState extends State<CartScreen> {
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Text(
-                                  calculateTotalAmount(cartItems) + '  PM',
+                                  '6:30  PM',
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
@@ -202,8 +202,7 @@ class _CartScreenState extends State<CartScreen> {
                                           TextButton.icon(
                                             onPressed: () {
                                               setState(() {
-                                                increaseCartItemAmount(
-                                                    index, cartItem.amount);
+                                                //increaseCartItemAmount( index, cartItem.amount);
                                               });
                                             },
                                             icon: Icon(Icons.add),
@@ -231,6 +230,7 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
+/*
   void increaseCartItemAmount(int index, int amount) async {
     await _cartRef.child('$index').update({
       'amount': amount++,
@@ -241,7 +241,7 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
-/*
+
   void decreaseCartItemAmount(Cart cart, int index, int amount) async {
     await _cartRef.child('$index').update({
       'amount': amount--,

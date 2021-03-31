@@ -36,26 +36,30 @@ class RestaurantCardVisited extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              FutureBuilder(
-                future: firebaseBaseClass
-                    .downloadRestaurantImageURL(restaurant.imgUrl),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: CachedNetworkImage(
-                        imageUrl: snapshot.data,
-                        fit: BoxFit.fitWidth,
-                        width: 300,
-                        height: 155,
-                      ),
-                    );
-                  } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
+              Container(
+                height: 155,
+                width: 300,
+                child: FutureBuilder(
+                  future: firebaseBaseClass
+                      .downloadRestaurantImageURL(restaurant.imgUrl),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: CachedNetworkImage(
+                          imageUrl: snapshot.data,
+                          fit: BoxFit.cover,
+                          memCacheHeight: 155,
+                          memCacheWidth: 300,
+                        ),
+                      );
+                    } else {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(4.0),

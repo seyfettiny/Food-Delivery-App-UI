@@ -39,8 +39,7 @@ class FoodDetailScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: buildAppBar(context),
-          bottomNavigationBar:
-              CustomButton.addToCart(food: food, text: 'Add to Order'),
+          bottomNavigationBar: CustomButton(text: 'Add to Order'),
           body: Center(
             child: SingleChildScrollView(
               child: Padding(
@@ -180,9 +179,9 @@ class FoodDetailScreen extends StatelessWidget {
                                         sigmaX: 30, sigmaY: 30),
                                     child: CachedNetworkImage(
                                       imageUrl: foodImageUrl,
-                                      width: 230,
-                                      height: 230,
-                                      color: Colors.black.withOpacity(0.6),
+                                      width: 260,
+                                      height: 260,
+                                      color: Colors.black.withOpacity(0.3),
                                     ),
                                   ),
                                 ),

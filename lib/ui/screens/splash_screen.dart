@@ -66,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     size: 70,
                   ),
                   Container(
-                    padding: EdgeInsets.all(25),
+                    padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         border: Border.all(width: 7, color: Colors.white)),
@@ -74,7 +74,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       'No\nqu\neu\nes',
                       style: TextStyle(
                         fontSize: 40,
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                   ),

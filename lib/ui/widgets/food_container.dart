@@ -111,9 +111,9 @@ class FoodContainer extends StatelessWidget {
                                       ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                                   child: CachedNetworkImage(
                                     imageUrl: snapshot.data,
-                                    width: 130,
-                                    height: 130,
-                                    color: Colors.black.withOpacity(0.5),
+                                    width: 140,
+                                    height: 140,
+                                    color: Colors.black.withOpacity(0.2),
                                   ),
                                 ),
                               ),
