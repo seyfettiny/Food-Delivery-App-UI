@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_delivery_app/helper/custom_search_delegate.dart';
+import '../../helper/custom_search_delegate.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key key}) : super(key: key);

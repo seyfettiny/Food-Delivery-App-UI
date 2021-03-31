@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_delivery_app/models/user_model.dart';
-import 'package:food_delivery_app/services/firebase_base.dart';
-import 'package:shimmer/shimmer.dart';
+import '../../models/user_model.dart';
+import '../../services/firebase_base.dart';
 
 class ReviewWidget extends StatelessWidget {
   final firebaseBaseClass = FirebaseBaseClass();
@@ -29,7 +28,7 @@ class ReviewWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   index % 4 == 0
-                      ? buildLiveWidget(snapshot.data)
+                      ? buildVideoWidget(snapshot.data)
                       : ClipOval(
                           child: CachedNetworkImage(
                             imageUrl: snapshot.data,
@@ -47,27 +46,31 @@ class ReviewWidget extends StatelessWidget {
             ),
           );
         } else {
-          return Shimmer.fromColors(
-            baseColor: Colors.red,
-            highlightColor: Colors.yellow,
-            child: Container(
-              height: 90,
-              width: 90,
-            ),
+          return Center(
+            child: CircularProgressIndicator(),
           );
         }
       },
     );
   }
 
-  Stack buildLiveWidget(String url) {
+  Stack buildVideoWidget(String url) {
     return Stack(
       clipBehavior: Clip.none,
       alignment: Alignment.bottomCenter,
       children: [
         ClipOval(
           child: Container(
-            color: Colors.deepOrange,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(50),
+              ),
+              border: Border.all(
+                color: Colors.deepOrange,
+                width: 3,
+                style: BorderStyle.solid,
+              ),
+            ),
             padding: EdgeInsets.all(2),
             child: ClipOval(
               child: CachedNetworkImage(

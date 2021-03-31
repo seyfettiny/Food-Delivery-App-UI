@@ -3,13 +3,13 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_delivery_app/models/food_model.dart';
-import 'package:food_delivery_app/models/restaurant_model.dart';
-import 'package:food_delivery_app/services/firebase_base.dart';
-import 'package:food_delivery_app/ui/screens/cart_screen.dart';
-import 'package:food_delivery_app/ui/widgets/custom_button.dart';
-import 'package:food_delivery_app/ui/widgets/food_container.dart';
-import 'package:food_delivery_app/ui/widgets/like_button.dart';
+import '../../models/food_model.dart';
+import '../../models/restaurant_model.dart';
+import '../../services/firebase_base.dart';
+import 'cart_screen.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/food_container.dart';
+import '../widgets/like_button.dart';
 
 class FoodDetailScreen extends StatelessWidget {
   final FoodElement food;
@@ -70,7 +70,7 @@ class FoodDetailScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       LikeButton(
-                                        size: 30,
+                                        size: 25,
                                         food: food,
                                       ),
                                       Expanded(
@@ -172,26 +172,34 @@ class FoodDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Positioned(
-                                  right: -40,
-                                  bottom: 0,
-                                  child: ImageFiltered(
-                                    imageFilter: ImageFilter.blur(
-                                        sigmaX: 30, sigmaY: 30),
-                                    child: CachedNetworkImage(
-                                      imageUrl: foodImageUrl,
-                                      width: 260,
-                                      height: 260,
-                                      color: Colors.black.withOpacity(0.3),
+                                  right: -15,
+                                  bottom: -10,
+                                  child: Container(
+                                    width: 260,
+                                    height: 260,
+                                    child: ImageFiltered(
+                                      imageFilter: ImageFilter.blur(
+                                          sigmaX: 30, sigmaY: 30),
+                                      child: CachedNetworkImage(
+                                        imageUrl: foodImageUrl,
+                                        memCacheHeight: 260,
+                                        memCacheWidth: 260,
+                                        color: Colors.black.withOpacity(0.3),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Positioned(
-                                  right: -25,
+                                  right: -20,
                                   bottom: 0,
-                                  child: CachedNetworkImage(
-                                    imageUrl: foodImageUrl,
-                                    width: 220,
-                                    height: 220,
+                                  child: Container(
+                                    width: 230,
+                                    height: 230,
+                                    child: CachedNetworkImage(
+                                      imageUrl: foodImageUrl,
+                                      maxHeightDiskCache: 230,
+                                      maxWidthDiskCache: 230,
+                                    ),
                                   ),
                                 ),
                               ],

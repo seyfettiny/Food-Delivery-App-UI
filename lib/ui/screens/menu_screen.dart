@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_delivery_app/models/restaurant_model.dart';
-import 'package:food_delivery_app/ui/widgets/custom_button.dart';
-import 'package:food_delivery_app/ui/widgets/food_container.dart';
 
+import '../../models/restaurant_model.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/food_container.dart';
 import 'cart_screen.dart';
 
 class MenuScreen extends StatelessWidget {

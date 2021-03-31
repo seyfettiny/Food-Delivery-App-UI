@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:food_delivery_app/services/firebase_base.dart';
-import 'package:food_delivery_app/ui/screens/food_detail_screen.dart';
+import '../../services/firebase_base.dart';
+import '../screens/food_detail_screen.dart';
 
 import 'like_button.dart';
 
@@ -29,11 +29,13 @@ class FoodContainer extends StatelessWidget {
           return GestureDetector(
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FoodDetailScreen(
-                            food: foodList[index],
-                          )));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FoodDetailScreen(
+                    food: foodList[index],
+                  ),
+                ),
+              );
             },
             child: AnimationConfiguration.staggeredList(
               position: index,
@@ -106,24 +108,32 @@ class FoodContainer extends StatelessWidget {
                                 //TODO: animatedbuilder rotation
                                 top: 30,
                                 right: 0,
-                                child: ImageFiltered(
-                                  imageFilter:
-                                      ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                                  child: CachedNetworkImage(
-                                    imageUrl: snapshot.data,
-                                    width: 140,
-                                    height: 140,
-                                    color: Colors.black.withOpacity(0.2),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  child: ImageFiltered(
+                                    imageFilter: ImageFilter.blur(
+                                        sigmaX: 20, sigmaY: 20),
+                                    child: CachedNetworkImage(
+                                      memCacheHeight: 140,
+                                      memCacheWidth: 140,
+                                      imageUrl: snapshot.data,
+                                      color: Colors.black.withOpacity(0.2),
+                                    ),
                                   ),
                                 ),
                               ),
                               Positioned(
                                 top: 20,
                                 right: -10,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data,
+                                child: Container(
                                   width: 130,
                                   height: 130,
+                                  child: CachedNetworkImage(
+                                    imageUrl: snapshot.data,
+                                    maxHeightDiskCache: 150,
+                                    maxWidthDiskCache: 150,
+                                  ),
                                 ),
                               )
                             ],

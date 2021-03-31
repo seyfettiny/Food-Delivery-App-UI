@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:food_delivery_app/models/cart_model.dart';
-import 'package:food_delivery_app/models/food_model.dart';
-import 'package:food_delivery_app/models/restaurant_model.dart';
-import 'package:food_delivery_app/models/user_model.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/cart_model.dart';
+import '../models/food_model.dart';
+import '../models/restaurant_model.dart';
+import '../models/user_model.dart';
 
 class FirebaseBaseClass {
   final firebaseBaseUrl =

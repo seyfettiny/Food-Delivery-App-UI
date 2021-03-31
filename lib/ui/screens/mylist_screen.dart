@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:food_delivery_app/models/user_model.dart';
-import 'package:food_delivery_app/services/firebase_base.dart';
-import 'package:food_delivery_app/ui/screens/profile_screen.dart';
-import 'package:food_delivery_app/ui/widgets/restaurant_card.dart';
-import 'package:food_delivery_app/ui/widgets/restaurant_card_visited.dart';
+
+import '../../models/user_model.dart';
+import '../../services/firebase_base.dart';
+import '../widgets/restaurant_card.dart';
+import '../widgets/restaurant_card_visited.dart';
+import 'profile_screen.dart';
 
 class MyListScreen extends StatelessWidget {
   final firebaseBaseClass = FirebaseBaseClass();
@@ -33,7 +34,7 @@ class MyListScreen extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             var users = snapshot.data[0];
-            List restaurants = snapshot.data[1];
+            var restaurants = snapshot.data[1];
             return Scaffold(
               backgroundColor: Colors.transparent,
               appBar: buildAppBar(context, 'My List', users[0]),
@@ -88,6 +89,8 @@ class MyListScreen extends StatelessWidget {
                     child: ClipOval(
                       child: CachedNetworkImage(
                         imageUrl: snapshot.data,
+                        memCacheHeight: 32,
+                        memCacheWidth: 32,
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
@@ -125,18 +128,15 @@ class MyListScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {},
-                child: AnimationConfiguration.staggeredList(
-                  position: index,
-                  delay: Duration(milliseconds: 100),
-                  duration: Duration(milliseconds: 300),
-                  child: SlideAnimation(
-                    horizontalOffset: 100,
-                    child: FadeInAnimation(
-                      child: RestaurantCard(
-                        restaurant: restaurants[index],
-                      ),
+              return AnimationConfiguration.staggeredList(
+                position: index,
+                delay: Duration(milliseconds: 100),
+                duration: Duration(milliseconds: 300),
+                child: SlideAnimation(
+                  horizontalOffset: 100,
+                  child: FadeInAnimation(
+                    child: RestaurantCard(
+                      restaurant: restaurants[index],
                     ),
                   ),
                 ),
@@ -173,18 +173,15 @@ class MyListScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {},
-                child: AnimationConfiguration.staggeredList(
-                  position: index,
-                  delay: Duration(milliseconds: 100),
-                  duration: Duration(milliseconds: 300),
-                  child: SlideAnimation(
-                    horizontalOffset: 50,
-                    child: FadeInAnimation(
-                      child: RestaurantCardVisited(
-                        restaurant: restaurants[index],
-                      ),
+              return AnimationConfiguration.staggeredList(
+                position: index,
+                delay: Duration(milliseconds: 100),
+                duration: Duration(milliseconds: 300),
+                child: SlideAnimation(
+                  horizontalOffset: 50,
+                  child: FadeInAnimation(
+                    child: RestaurantCardVisited(
+                      restaurant: restaurants[index],
                     ),
                   ),
                 ),

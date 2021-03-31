@@ -1,14 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:food_delivery_app/models/user_model.dart';
-import 'package:food_delivery_app/services/firebase_base.dart';
-import 'package:food_delivery_app/ui/widgets/food_card_square.dart';
-import 'package:food_delivery_app/ui/widgets/restaurant_card_visited.dart';
-import 'package:food_delivery_app/ui/widgets/review_widget.dart';
-import 'package:food_delivery_app/ui/screens/restaurant_screen.dart';
-
-import 'food_detail_screen.dart';
+import '../../models/user_model.dart';
+import '../../services/firebase_base.dart';
+import '../widgets/food_card_square.dart';
+import '../widgets/restaurant_card_visited.dart';
+import '../widgets/review_widget.dart';
 import 'profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -147,24 +144,15 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          RestaurantScreen(restaurant: restaurants[index])));
-            },
-            child: AnimationConfiguration.staggeredList(
-              position: index,
-              delay: Duration(milliseconds: 100),
-              duration: Duration(milliseconds: 300),
-              child: SlideAnimation(
-                horizontalOffset: 50,
-                child: FadeInAnimation(
-                  child: RestaurantCardVisited(
-                    restaurant: restaurants[index],
-                  ),
+          return AnimationConfiguration.staggeredList(
+            position: index,
+            delay: Duration(milliseconds: 100),
+            duration: Duration(milliseconds: 300),
+            child: SlideAnimation(
+              horizontalOffset: 50,
+              child: FadeInAnimation(
+                child: RestaurantCardVisited(
+                  restaurant: restaurants[index],
                 ),
               ),
             ),
@@ -245,26 +233,14 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FoodDetailScreen(
-                        food: tempList[index],
-                      ),
-                    ),
-                  );
-                },
-                child: AnimationConfiguration.staggeredList(
-                  position: index,
-                  delay: Duration(milliseconds: 100),
-                  duration: Duration(milliseconds: 300),
-                  child: SlideAnimation(
-                    horizontalOffset: 150,
-                    child: FadeInAnimation(
-                      child: FoodCardSquare(food: tempList[index]),
-                    ),
+              return AnimationConfiguration.staggeredList(
+                position: index,
+                delay: Duration(milliseconds: 100),
+                duration: Duration(milliseconds: 300),
+                child: SlideAnimation(
+                  horizontalOffset: 150,
+                  child: FadeInAnimation(
+                    child: FoodCardSquare(food: tempList[index]),
                   ),
                 ),
               );
@@ -279,6 +255,5 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }

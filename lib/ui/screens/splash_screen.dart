@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/ui/main_wrapper.dart';
 import 'package:video_player/video_player.dart';
+
+import '../main_wrapper.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key key}) : super(key: key);
@@ -30,7 +31,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _playerController = VideoPlayerController.asset(randomVideo())
       ..setLooping(true)
@@ -104,7 +104,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _playerController.dispose();
   }

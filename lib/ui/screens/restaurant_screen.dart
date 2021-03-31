@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/models/restaurant_model.dart';
-import 'package:food_delivery_app/services/firebase_base.dart';
-import 'package:food_delivery_app/ui/screens/menu_screen.dart';
-import 'package:food_delivery_app/ui/widgets/custom_button.dart';
-import 'package:food_delivery_app/ui/widgets/food_card_square.dart';
+import '../../models/restaurant_model.dart';
+import '../../services/firebase_base.dart';
+import 'menu_screen.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/food_card_square.dart';
 
 class RestaurantScreen extends StatelessWidget {
   final Restaurant restaurant;
@@ -62,6 +63,8 @@ class RestaurantScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           child: CachedNetworkImage(
                             imageUrl: snapshot.data,
+                            maxHeightDiskCache: 360,
+                            maxWidthDiskCache: 192,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -282,6 +285,13 @@ class RestaurantScreen extends StatelessWidget {
             text: TextSpan(text: 'Reservation ', children: [
               TextSpan(
                 text: 'Today May 2',
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () => showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2021),
+                        lastDate: DateTime(2025),
+                      ),
                 style: TextStyle(
                     color: Theme.of(context).accentColor,
                     fontWeight: FontWeight.bold),
@@ -297,7 +307,11 @@ class RestaurantScreen extends StatelessWidget {
     return Row(
       children: [
         Text('Terrace  '),
-        Switch(activeColor: Colors.grey, value: true, onChanged: (value) {}),
+        Switch(
+          activeColor: Colors.grey,
+          value: true,
+          onChanged: (value) {},
+        ),
         Text('  Inside'),
       ],
     );
