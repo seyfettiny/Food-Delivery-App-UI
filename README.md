@@ -1,4 +1,4 @@
-# Food Delivery App UI (WIP)
+# Food Delivery App with Firebase
 Design credits belong to respective owners. Check their other works from [*here*](https://www.behance.net/gallery/105003531/No-queues-Mobile-App-Delivery-Pre-Order)
 
 If you want to test it you can install [this apk](ss/app-release.apk) to your device
@@ -27,4 +27,5 @@ Images from [Unsplash](unsplash.com) and [pngimg.com](http://pngimg.com/)
 [http](https://pub.dev/packages/http) <br/>
 [lottie](https://pub.dev/packages/lottie) <br/>
 [video_player](https://pub.dev/packages/http) <br/>
+[shimmer](https://pub.dev/packages/shimmer) <br/>
 

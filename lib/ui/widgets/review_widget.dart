@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shimmer/shimmer.dart';
+
 import '../../models/user_model.dart';
 import '../../services/firebase_base.dart';
 
@@ -46,8 +48,37 @@ class ReviewWidget extends StatelessWidget {
             ),
           );
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
+          return Container(
+            margin: const EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  height: 90,
+                  width: 90,
+                  child: Shimmer.fromColors(
+                    baseColor: Colors.grey.shade800,
+                    highlightColor: Colors.grey.shade700,
+                    child: ClipOval(
+                      child: Container(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                  width: 90,
+                  child: Shimmer.fromColors(
+                    baseColor: Colors.grey.shade800,
+                    highlightColor: Colors.grey.shade700,
+                    child: Container(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         }
       },

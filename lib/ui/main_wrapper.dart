@@ -29,19 +29,21 @@ class _MainWrapperState extends State<MainWrapper> {
       onWillPop: () {
         return;
       },
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: IndexedStack(
-          index: _selectedIndex,
-          children: [
-            SafeArea(child: HomeScreen()),
-            SafeArea(child: SearchScreen()),
-            SafeArea(child: MyListScreen()),
-            SafeArea(child: MapScreen()),
-            SafeArea(child: VoiceSearchScreen()),
-          ],
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: IndexedStack(
+            index: _selectedIndex,
+            children: [
+              HomeScreen(),
+              SearchScreen(),
+              MyListScreen(),
+              MapScreen(),
+              VoiceSearchScreen(),
+            ],
+          ),
+          bottomNavigationBar: bottomNavigationBar(),
         ),
-        bottomNavigationBar: bottomNavigationBar(),
       ),
     );
   }

@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
 import '../../models/restaurant_model.dart';
 import '../../services/firebase_base.dart';
-import 'menu_screen.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/food_card_square.dart';
+import 'menu_screen.dart';
 
 class RestaurantScreen extends StatelessWidget {
   final Restaurant restaurant;

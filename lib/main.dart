@@ -10,6 +10,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,54 +29,17 @@ class MyApp extends StatelessWidget {
         ),
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      home: MyAppContainer(),
+      home: FutureBuilder(
+          future: _initialization,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+            if (snapshot.connectionState == ConnectionState.done) {
+              return SplashScreen();
+            }
+            return CircularProgressIndicator();
+          }),
     );
-  }
-}
-
-class MyAppContainer extends StatefulWidget {
-  MyAppContainer({Key key}) : super(key: key);
-
-  @override
-  _MyAppContainerState createState() => _MyAppContainerState();
-}
-
-class _MyAppContainerState extends State<MyAppContainer> {
-  bool _initialized = false;
-  bool _error = false;
-
-  void initializeFlutterFire() async {
-    try {
-      await Firebase.initializeApp();
-      setState(() {
-        _initialized = true;
-      });
-    } catch (e) {
-      setState(() {
-        _error = true;
-        print('initialization error:' + e.toString());
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    initializeFlutterFire();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_error) {
-      return Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Text('Something went wrong'),
-      );
-    }
-    if (!_initialized) {
-      return CircularProgressIndicator();
-    }
-    return SplashScreen();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../models/food_model.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../models/food_model.dart';
 
 class LikeButton extends StatefulWidget {
   final double size;

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../models/restaurant_model.dart';
 import '../../services/firebase_base.dart';
@@ -57,6 +58,7 @@ class RestaurantCardVisited extends StatelessWidget {
                         return ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: CachedNetworkImage(
+                            fadeInDuration: Duration(milliseconds: 100),
                             imageUrl: snapshot.data,
                             fit: BoxFit.cover,
                             memCacheHeight: 155,
@@ -64,8 +66,20 @@ class RestaurantCardVisited extends StatelessWidget {
                           ),
                         );
                       } else {
-                        return Center(
-                          child: CircularProgressIndicator(),
+                        return Container(
+                          height: 155,
+                          width: 300,
+                          margin: EdgeInsets.symmetric(horizontal: 14),
+                          child: Shimmer.fromColors(
+                            baseColor: Colors.grey.shade800,
+                            highlightColor: Colors.grey.shade700,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Container(
+                                color: Color(0xff33343b),
+                              ),
+                            ),
+                          ),
                         );
                       }
                     },

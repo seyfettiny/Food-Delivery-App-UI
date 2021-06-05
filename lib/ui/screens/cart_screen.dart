@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../models/cart_model.dart';
 import '../../services/firebase_base.dart';
@@ -176,8 +177,21 @@ class _CartScreenState extends State<CartScreen> {
                                             maxWidthDiskCache: 70,
                                             imageUrl: snapshot.data);
                                       } else {
-                                        return Center(
-                                          child: CircularProgressIndicator(),
+                                        return SizedBox(
+                                          width: 70,
+                                          height: 70,
+                                          child: Shimmer.fromColors(
+                                            baseColor: Colors.grey.shade800,
+                                            highlightColor:
+                                                Colors.grey.shade700,
+                                            child: ClipOval(
+                                              child: Container(
+                                                color: Colors.grey,
+                                                width: 70,
+                                                height: 70,
+                                              ),
+                                            ),
+                                          ),
                                         );
                                       }
                                     },
@@ -224,7 +238,6 @@ class _CartScreenState extends State<CartScreen> {
                       }),
                 );
               } else {
-                print(snapshot.error);
                 return Center(child: CircularProgressIndicator());
               }
             }),

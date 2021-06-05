@@ -9,39 +9,11 @@ import '../widgets/review_widget.dart';
 import 'profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  final FirebaseBaseClass firebaseBaseClass = FirebaseBaseClass();
   HomeScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //TODO: cart
-    // var map2 = cartItems
-    //     .map(
-    //       (e) => {
-    //         '"amount"': e.amount,
-    //         '"food"': {},
-    //       },
-    //     )
-    //     .toList();
-    // for (var i = 0; i < map2.length; i++) {
-    //   print(map2[i]);
-    // }
-    return buildcontainerwidget();
-  }
-}
-
-class buildcontainerwidget extends StatefulWidget {
-  buildcontainerwidget({Key key}) : super(key: key);
-
-  @override
-  _buildcontainerwidgetState createState() => _buildcontainerwidgetState();
-}
-
-class _buildcontainerwidgetState extends State<buildcontainerwidget>
-    with AutomaticKeepAliveClientMixin {
-  final FirebaseBaseClass firebaseBaseClass = FirebaseBaseClass();
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -146,8 +118,7 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
         itemBuilder: (context, index) {
           return AnimationConfiguration.staggeredList(
             position: index,
-            delay: Duration(milliseconds: 100),
-            duration: Duration(milliseconds: 300),
+            duration: Duration(milliseconds: 200),
             child: SlideAnimation(
               horizontalOffset: 50,
               child: FadeInAnimation(
@@ -253,7 +224,4 @@ class _buildcontainerwidgetState extends State<buildcontainerwidget>
       ],
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

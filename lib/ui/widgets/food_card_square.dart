@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../models/food_model.dart';
 import '../../services/firebase_base.dart';
@@ -58,6 +59,7 @@ class FoodCardSquare extends StatelessWidget {
                       return ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: CachedNetworkImage(
+                          fadeInDuration: Duration(milliseconds: 100),
                           imageUrl: snapshot.data,
                           fit: BoxFit.cover,
                           maxHeightDiskCache: 200,
@@ -67,8 +69,21 @@ class FoodCardSquare extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return Center(
-                        child: CircularProgressIndicator(),
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: SizedBox(
+                          width: 120,
+                          height: 140,
+                          child: Shimmer.fromColors(
+                            baseColor: Colors.grey.shade800,
+                            highlightColor: Colors.grey.shade700,
+                            child: Container(
+                              color: Colors.grey,
+                              width: 120,
+                              height: 140,
+                            ),
+                          ),
+                        ),
                       );
                     }
                   },
